@@ -1,0 +1,22 @@
+<template name="modalLadderAddPlayer">
+<div id="modalLadderAddPlayer" class="modal hide fade in hide" style="display: none; ">  
+<div class="modal-header">  
+<a class="close" data-dismiss="modal">×</a>  
+<h4>Add player to ladder</h4>  
+</div>  
+<div class="modal-body">  
+<form class="" id="newPlayerForm">
+<p>Pick some players</p>  
+<div class="control-group">
+<div class="controls">
+  <input type="hidden" id="playersInput" placeholder="Enter nicknames here..." style="width: 100%"></input>
+</div>
+</div>
+</div>  
+<div class="modal-footer">  
+<button class="btn btn-success" data-dismiss="modal" 
+id="addPlayerButton" onClick="return false;">Create</button>  
+</div>  
+</form>
+</div> 
+</template>

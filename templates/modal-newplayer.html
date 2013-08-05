@@ -1,0 +1,26 @@
+<template name="newPlayerModal">
+<div id="newPlayerModal" class="modal hide fade in" style="display: none; ">  
+<div class="modal-header">  
+<a class="close" data-dismiss="modal">×</a>  
+<h4>New Player</h4>  
+</div>  
+<div class="modal-body">  
+<p>Please fill in the required information:</p>  
+<form class="form-horizontal" id="newPlayerForm">
+<div class="control-group">
+<label class="control-label" for="nickname">Nickname</label>
+<div class="controls">
+<div class="input-prepend">
+  <span class="add-on"><i class="icon-tag"></i></span>
+  <input class="span2" id="nickname" type="text" placeholder="Nickname">
+</div>
+</div>
+</div>
+</div>  
+<div class="modal-footer">  
+<button class="btn btn-success" data-dismiss="modal" 
+id="newPlayerButton" onClick="return false;">Create</button>  
+</div>  
+</form>
+</div> 
+</template>

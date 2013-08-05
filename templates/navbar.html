@@ -1,0 +1,30 @@
+<template name="navbar">
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="#">Laddermania (Beta)</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li><a id="dashSection">Dash [{{currentLadder.name}}]</a></li>
+              <li><a id="laddersSection" href="#">Ladders</a></li>
+              <li><a id="playersSection" href="#">Players</a></li>
+            </ul>
+	    <ul class="nav pull-right">
+		<li>
+		<a>Logged in as <b>{{user.name}}</b></a>
+		</li>
+		<li>
+		<a class="pull-right close" id="logoutButton">×</a>
+		</li>
+            </ul>
+	    </div>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+</template>
