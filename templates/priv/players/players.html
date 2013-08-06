@@ -29,3 +29,10 @@
 <button class="btn btn-success" data-toggle="modal" href="#newPlayerModal">Add a new Player</button>
 </div>
 </template>
+
+<template name="player">
+    <tr>
+        <td>{{nickname}}</td>
+        <td><a href="#" class="removePlayer" data-id="{{_id}}"><i class="icon icon-trash"></i></a></td>
+    </tr>
+</template>
