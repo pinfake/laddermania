@@ -10,6 +10,7 @@ if (Meteor.isClient) {
                     currentLadder: id
                 }}
             );
+            Scores.insert({_id: id});
         }
     });
 
@@ -34,6 +35,7 @@ if (Meteor.isClient) {
             var id = $(element).attr('data-id');
 
             Ladders.remove({ _id: id });
+            Scores.remove({ ladderId: id });
         },
         'click tr.selectLadder': function (event) {
             if ($(event.target).is('i')) return;

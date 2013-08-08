@@ -9,16 +9,10 @@ if (Meteor.isClient) {
         return( current );
     }
 
-    Template.ladderPositions.ladderPlayers = function () {
-        var players = LadderPlayers.find({ladderId: Session.get('currentLadder')._id }, {sort: {score: -1}});
-        if (players.count() < 1) return false;
-        var ret = [];
-        var position = 1;
-        players.forEach(function (player) {
-            var pInfo = Players.findOne({ _id: player.playerId }, 'nickname');
-            ret.push({ playerId: player.playerId, nickname: pInfo.nickname, score: player.score, position: position++ });
-        });
-        return( ret );
+    Template.ladderPositions.scores = function () {
+        var scores = Scores.findOne({_id: Session.get('currentLadder')._id });
+        if( scores.players == undefined ||scores.players.length < 1 ) return false;
+        return scores.players;
     };
 
     Template.modalLadderAddPlayer.players = function () {
@@ -31,10 +25,23 @@ if (Meteor.isClient) {
         'click #addPlayerButton': function () {
             var players = $('#playersInput').select2("val");
             for (var i = 0; i < players.length; i++) {
-                LadderPlayers.insert({
-                    ladderId: Session.get('currentLadder')._id,
-                    playerId: players[i],
-                    score: 0 });
+                var player = Players.findOne( {_id: players[i]});
+                console.log( "voy con un player: " );
+                console.log( player );
+                Scores.update(
+                    {
+                        _id: Session.get('currentLadder')._id
+                    },
+                    { $push:
+                        { players:
+                            {
+                                $each: [ { id: player._id, nickname: player.nickname, score: 0 } ],
+                                $sort: { score: -1, nickname: 1 },
+                                $slice: -10
+                            }
+                        }
+                    }
+                );
             }
         }
     });

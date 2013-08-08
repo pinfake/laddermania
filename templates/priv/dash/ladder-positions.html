@@ -12,8 +12,8 @@
       </tr>
     </thead>
     <tbody>
-    {{#each ladderPlayers}}
-      {{> ladderPlayer}}
+    {{#each scores}}
+      {{> score}}
     {{/each}}
     </tbody>
     </table>
@@ -32,7 +32,7 @@
 {{> modalLadderAddPlayer}}
 </template>
 
-<template name="ladderPlayer">
+<template name="score">
     <tr>
         <td><span class="badge" data-position='{{position}}'>{{position}}</span></td>
         <td>{{nickname}}</td>
