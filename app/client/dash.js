@@ -1,4 +1,13 @@
 if (Meteor.isClient) {
+
+
+    //var LadderPlayersFlat = new Meteor.Collection("mrLadderPlayers");
+
+
+    //Meteor.subscribe("mrLadderPlayers");
+    Meteor.subscribe("mrLadderPlayers", Session.get('currentLadder') != undefined ?
+        Session.get('currentLadder')._id : null );
+
     Template.dash.currentLadder = function () {
         var current = Session.get('currentLadder');
         return( current );
@@ -10,8 +19,16 @@ if (Meteor.isClient) {
     }
 
     Template.ladderPositions.ladderPlayers = function () {
-        var players = LadderPlayers.find({ladderId: Session.get('currentLadder')._id }, {sort: {score: -1}});
+
+        console.log( 'Aqui va la movida' );
+
+        console.log( MRLadderPlayers.find() );
+
+        var players = MRLadderPlayers.find({});
+
         if (players.count() < 1) return false;
+        console.log( players );
+        return players;
         var ret = [];
         var position = 1;
         players.forEach(function (player) {
@@ -19,12 +36,6 @@ if (Meteor.isClient) {
             ret.push({ playerId: player.playerId, nickname: pInfo.nickname, score: player.score, position: position++ });
         });
         return( ret );
-    };
-
-    Template.modalLadderAddPlayer.players = function () {
-        var players = Players.find({}, {sort: {nickname: 1}});
-        if (players.count() < 1) return false;
-        return( players );
     };
 
     Template.modalLadderAddPlayer.events = ({

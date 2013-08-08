@@ -3,7 +3,9 @@
   "dependencies": {
     "basePackages": {
       "select2": {},
-      "font-awesome": {}
+      "font-awesome": {},
+      "mongodb-aggregation": {},
+      "require": {}
     },
     "packages": {
       "select2": {
@@ -15,6 +17,16 @@
         "git": "https://github.com/nate-strauser/meteor-font-awesome.git",
         "tag": "v3.2.0",
         "commit": "2cba6f907a2579cae2d399b522f9544c13d5e091"
+      },
+      "mongodb-aggregation": {
+        "git": "https://github.com/jhoxray/meteor-mongo-extensions.git",
+        "tag": "v0.1.5",
+        "commit": "54579b8a35fc59939995c63af26305024ed3bdad"
+      },
+      "require": {
+        "git": "https://github.com/tomconnors/meteor-require.git",
+        "tag": "v0.0.1",
+        "commit": "1662154598db51d1291fbfcefcd7152e7255bcf6"
       }
     }
   }
