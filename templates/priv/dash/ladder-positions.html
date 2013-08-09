@@ -1,35 +1,34 @@
 <template name="ladderPositions">
-<div class="span6">
-<div class="pagination-center text-center well well-small">
-<strong>Ranking</strong>
-</div>
-    <table class="table table-bordered table-striped table-hover">
-    <thead>
-      <tr>
-        <th width="20"><center><i class="icon-globe"></i></center></th>
-        <th>Player</th>
-        <th width="60">Score</th>
-      </tr>
-    </thead>
-    <tbody>
-    {{#each scores}}
-      {{> score}}
-    {{/each}}
-    </tbody>
-    </table>
-<ul class="pager">
-  <li class="previous disabled">
-    <a href="#">&larr; Higher</a>
-  </li>
-  <li class="next pull-right disabled">
-    <a href="#">&rarr; Lower</a>
-  </li>
-</ul>
-<div class="pagination-center text-center">
-<button class="btn btn-primary" data-toggle="modal" href="#modalLadderAddPlayer">Add Player</button>
-</div>
-</div>
-{{> modalLadderAddPlayer}}
+    <div class="span6">
+        <div class="pagination-center text-center well well-small">
+            <strong>Ranking</strong>
+        </div>
+        <table class="table table-bordered table-striped table-hover">
+            <thead>
+            <tr>
+                <th width="20"><span class="text-center"><i class="icon-globe"></i></span></center></th>
+                <th>Player</th>
+                <th width="60">Score</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{#each scores}}
+            {{> score}}
+            {{/each}}
+            </tbody>
+        </table>
+        <ul class="pager">
+            <li class="previous disabled">
+                <a href="#">&larr; Higher</a>
+            </li>
+            <li class="next pull-right disabled">
+                <a href="#">Lower &rarr;</a>
+            </li>
+        </ul>
+        <div class="pagination-center text-center">
+            <button class="btn btn-primary" data-toggle="modal" href="#modalLadderAddPlayer">Add Player</button>
+        </div>
+    </div>
 </template>
 
 <template name="score">

@@ -9,9 +9,26 @@ if (Meteor.isClient) {
         return( current );
     }
 
+
     Template.ladderPositions.scores = function () {
         var scores = Scores.findOne({_id: Session.get('currentLadder')._id });
-        if( scores.players == undefined ||scores.players.length < 1 ) return false;
+        console.log(scores);
+
+        if (scores == undefined) return false;
+        if (scores.players == undefined || scores.players.length < 1) return false;
+
+        scores.players.sort(function (a, b) {
+            if (a.score > b.score) return -1;
+            if (a.score < b.score) return 1;
+            if (a.nickname > b.nickname) return 1;
+            if (a.nickname < b.nickname) return -1;
+            return 0;
+        });
+
+        for (var i = 0; i < scores.players.length; i++) {
+            scores.players[i].position = i + 1;
+        }
+
         return scores.players;
     };
 
@@ -23,26 +40,24 @@ if (Meteor.isClient) {
 
     Template.modalLadderAddPlayer.events = ({
         'click #addPlayerButton': function () {
-            var players = $('#playersInput').select2("val");
-            for (var i = 0; i < players.length; i++) {
-                var player = Players.findOne( {_id: players[i]});
-                console.log( "voy con un player: " );
-                console.log( player );
+            var playerIds = $('#playersInput').select2("val");
+            for (var i = 0; i < playerIds.length; i++) {
+                var player = Players.findOne({_id: playerIds[i]});
                 Scores.update(
                     {
                         _id: Session.get('currentLadder')._id
                     },
-                    { $push:
-                        { players:
-                            {
-                                $each: [ { id: player._id, nickname: player.nickname, score: 0 } ],
-                                $sort: { score: -1, nickname: 1 },
-                                $slice: -10
-                            }
-                        }
+                    { $push: {
+                        players: { id: player._id, nickname: player.nickname, score: 0 }
+                    }
                     }
                 );
             }
+            // This is hack to prevent select2 to become zombie when
+            // this event is fired by an enter keypress
+            $('#playersInput').select2("val", null);
+            $('#playersInput').select2("enable", false);
+            $('#playersInput').select2("enable", true);
         }
     });
 
@@ -53,7 +68,8 @@ if (Meteor.isClient) {
     }
 
     Template.modalLadderAddPlayer.rendered = function () {
-        $("#playersInput").select2({
+        console.log($("#newLadderPlayerForm #playersInput"));
+        $("#newLadderPlayerForm #playersInput").select2({
             multiple: true,
             minimumInputLength: 2,
             query: function (query) {
@@ -66,4 +82,5 @@ if (Meteor.isClient) {
             }
         });
     }
+
 }
