@@ -1,5 +1,5 @@
 <template name="public">
-{{> login}}
+    {{> login}}
 </template>
 
 <template name="login">
@@ -13,10 +13,10 @@
                         Incorrect Username or Password!
                     </div>
                     <form accept-charset="UTF-8" id="loginForm">
-                        <input type="text" id="username" class="span4" name="username" placeholder="Username" />
-                        <input type="password" id="password" class="span4" name="password" placeholder="Password" />
+                        <input type="text" id="username" class="span4" name="username" placeholder="Username"/>
+                        <input type="password" id="password" class="span4" name="password" placeholder="Password"/>
                         <label class="checkbox">
-                            <input type="checkbox" name="remember" value="1" /> Remember Me
+                            <input type="checkbox" name="remember" value="1"/> Remember Me
                         </label>
                         <button class="btn btn-primary btn-block" id="login" onClick="return false;">Sign in</button>
                     </form>
