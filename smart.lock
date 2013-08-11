@@ -3,7 +3,8 @@
   "dependencies": {
     "basePackages": {
       "select2": {},
-      "font-awesome": {}
+      "font-awesome": {},
+      "Mesosphere": {}
     },
     "packages": {
       "select2": {
@@ -15,6 +16,16 @@
         "git": "https://github.com/nate-strauser/meteor-font-awesome.git",
         "tag": "v3.2.0",
         "commit": "2cba6f907a2579cae2d399b522f9544c13d5e091"
+      },
+      "Mesosphere": {
+        "git": "https://github.com/copleykj/Mesosphere.git",
+        "tag": "v0.1.1",
+        "commit": "0873e449f7cabb58986b05c9d2b7b3b64bd19a9f"
+      },
+      "underscore-string": {
+        "git": "https://github.com/possibilities/meteor-underscore-string.git",
+        "tag": "v2.2.0rc.1",
+        "commit": "dec21fac23310daf76dc19f246749e7beb48af03"
       }
     }
   }

@@ -15,19 +15,24 @@ if (Meteor.isClient) {
 
     Template.navbar.events({
         'click #playersSection': function () {
-            $('li.active').removeClass('active');
-            $('#playersSection').parent().addClass('active');
+            $('#mainNav li.active').removeClass('active');
+            $('#mainNav #playersSection').parent().addClass('active');
             Session.set("section", "players");
         },
         'click #dashSection': function () {
-            $('li.active').removeClass('active');
-            $('#dashSection').parent().addClass('active');
+            $('#mainNav li.active').removeClass('active');
+            $('#mainNav #dashSection').parent().addClass('active');
             Session.set("section", "dash");
         },
         'click #laddersSection': function () {
-            $('li.active').removeClass('active');
-            $('#laddersSection').parent().addClass('active');
+            $('#mainNav li.active').removeClass('active');
+            $('#mainNav #laddersSection').parent().addClass('active');
             Session.set("section", "ladders");
+        },
+        'click #gamesSection': function () {
+            $('#mainNav li.active').removeClass('active');
+            $('#mainNav #gamesSection').parent().addClass('active');
+            Session.set("section", "games");
         },
         'click #logoutButton': function () {
             Session.set('user', undefined);
@@ -36,7 +41,7 @@ if (Meteor.isClient) {
 
     Template.navbar.rendered = function () {
         console.log(Session);
-        $('li.active').removeClass('active');
-        $('#' + Session.get('section') + 'Section').parent().addClass('active');
+        $('#mainNav li.active').removeClass('active');
+        $('#mainNav #' + Session.get('section') + 'Section').parent().addClass('active');
     };
 }

@@ -9,6 +9,8 @@ if (Meteor.isClient) {
         return( current );
     }
 
+    Template.ladderMain.rendered = function () {
+    }
 
     Template.ladderPositions.scores = function () {
         var scores = Scores.findOne({_id: Session.get('currentLadder')._id });

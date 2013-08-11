@@ -4,26 +4,51 @@
             <a class="close" data-dismiss="modal">×</a>
             <h4>New Game</h4>
         </div>
-        <div class="modal-body">
-            <p>Please fill in the required information:</p>
+        <form class="form-horizontal" id="newGameForm">
+            <div class="modal-body">
+                <ul class="nav nav-tabs">
+                    <li class='active'>
+                        <a href="#general" data-toggle="tab">General</a>
+                    </li>
+                    <li><a href="#rules" data-toggle="tab">Rules</a></li>
+                </ul>
 
-            <form class="form-horizontal" id="newGameForm">
-                <div class="control-group">
-                    <label class="control-label" for="name">Name</label>
+                <div class="tab-content" data-toggle="tab">
+                    <div class="tab-pane active" id="general">
+                        <div class="control-group">
+                            <label class="control-label" for="name">Name</label>
 
-                    <div class="controls">
-                        <div class="input-prepend">
-                            <span class="add-on">@</span>
-                            <input class="span2" id="name" type="text" placeholder="Game name">
+                            <div class="controls">
+                                <div class="input-prepend">
+                                    <span class="add-on">@</span>
+                                    <input class="span2" id="name" name="name" type="text" placeholder="Game name">
+                                </div>
+                                <p id='name-error'></p>
+                            </div>
+                            <label class="control-label" for="description">Description</label>
+
+                            <div class="controls">
+                                <div class="input-prepend">
+                                    <span class="add-on">@</span>
+                                    <input class="span2" id="description" name="description" type="text"
+                                           placeholder="Description">
+                                </div>
+                                <p id='description-error'></p>
+                            </div>
                         </div>
                     </div>
+                    <div class="tab-pane" id="rules">
+                        Rules
+                    </div>
                 </div>
-            </form>
-        </div>
-        <div class="modal-footer">
-            <button class="btn btn-success" data-dismiss="modal" id="newGameButton" onClick="return false;">Create
-            </button>
-        </div>
+
+                <div>
+                    <button type="submit" class="btn btn-success pull-right" id="newGameButton" onClick="return false;">
+                        Create
+                    </button>
+                </div>
+            </div>
+
         </form>
     </div>
 </template>

@@ -1,6 +1,7 @@
 {
   "packages": {
     "select2": {},
-    "font-awesome": {}
+    "font-awesome": {},
+    "Mesosphere": {}
   }
 }

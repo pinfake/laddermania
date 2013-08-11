@@ -1,5 +1,5 @@
 <template name="navbar">
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-inverse navbar-fixed-top" id="mainNav">
         <div class="navbar-inner">
             <div class="container">
                 <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -13,6 +13,7 @@
                     <ul class="nav">
                         <li><a id="dashSection">Dash [{{currentLadder.name}}]</a></li>
                         <li><a id="laddersSection" href="#">Ladders</a></li>
+                        <li><a id="gamesSection" href="#">Games</a></li>
                         <li><a id="playersSection" href="#">Players</a></li>
                     </ul>
                     <ul class="nav pull-right">

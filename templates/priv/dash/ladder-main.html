@@ -1,9 +1,20 @@
 <template name="ladderMain">
-    <span style="text-align: center"><h3>{{currentLadder.name}}</h3></span>
-
-    <div class="row">
-        {{> ladderPositions}}
-        {{> modalLadderAddPlayer}}
-        {{> ladderMatches}}
+    <h3>{{currentLadder.name}}</h3>
+    <div>
+        <ul class="nav nav-tabs">
+            <li class='active'>
+                <a href="#scores" data-toggle="tab">Scores</a>
+            </li>
+            <li><a href="#matches" data-toggle="tab">Matches</a></li>
+        </ul>
+        <div class="tab-content"  data-toggle="tab">
+            <div class="tab-pane active" id="scores">
+                {{> ladderPositions}}
+                {{> modalLadderAddPlayer}}
+            </div>
+            <div class="tab-pane" id="matches">
+                {{> ladderMatches}}
+            </div>
+        </div>
     </div>
 </template>
