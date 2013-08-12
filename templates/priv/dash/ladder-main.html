@@ -6,14 +6,19 @@
                 <a href="#scores" data-toggle="tab">Scores</a>
             </li>
             <li><a href="#matches" data-toggle="tab">Matches</a></li>
+            <li><a href="#configuration" data-toggle="tab">Configuration</a></li>
         </ul>
         <div class="tab-content"  data-toggle="tab">
             <div class="tab-pane active" id="scores">
                 {{> ladderPositions}}
                 {{> modalLadderAddPlayer}}
+                {{> newPlayerModal}}
             </div>
             <div class="tab-pane" id="matches">
                 {{> ladderMatches}}
+            </div>
+            <div class="tab-pane" id="configuration">
+                {{> ladderConfiguration}}
             </div>
         </div>
     </div>

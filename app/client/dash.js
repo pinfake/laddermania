@@ -58,6 +58,13 @@ if (Meteor.isClient) {
             $('#playersInput').select2("val", null);
             $('#playersInput').select2("enable", false);
             $('#playersInput').select2("enable", true);
+        },
+        'click #insertPlayerButton': function () {
+
+            $('#playersInput').select2("val", null);
+            $('#playersInput').select2("enable", false);
+            $('#playersInput').select2("enable", true);
+            $('#newPlayerModal').modal('show');
         }
     });
 
@@ -68,7 +75,6 @@ if (Meteor.isClient) {
     }
 
     Template.modalLadderAddPlayer.rendered = function () {
-        console.log($("#newLadderPlayerForm #playersInput"));
         $("#newLadderPlayerForm #playersInput").select2({
             multiple: true,
             minimumInputLength: 2,

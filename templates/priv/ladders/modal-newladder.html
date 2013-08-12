@@ -13,14 +13,28 @@
                     <label class="control-label" for="name">Name</label>
 
                     <div class="controls">
-                        <div class="input-prepend">
-                            <span class="add-on">@</span>
-                            <input class="span2" id="name" type="text" placeholder="Ladder name">
-                        </div>
+                        <input class="span4" id="name" name="name" type="text" placeholder="Ladder name">
+                        <p id='name-error'></p>
+                    </div>
+
+                    <label class="control-label" for="description">Description</label>
+
+                    <div class="controls">
+                        <textarea class="span4" id="description" name="description"
+                                  placeholder="Short description..."></textarea>
+
+                        <p id='description-error'></p>
+                    </div>
+
+                    <label class="control-label" for="game">Game</label>
+
+                    <div class="controls">
+                        <input type="hidden" id="game" name="game" class="span4">
+                        <p id='game-error'></p>
                     </div>
                 </div>
                 <div>
-                    <button class="btn btn-success pull-right" data-dismiss="modal" id="newLadderButton"
+                    <button class="btn btn-success pull-right" id="newLadderButton"
                             onClick="return false;">Create
                     </button>
                 </div>

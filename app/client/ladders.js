@@ -1,16 +1,41 @@
 if (Meteor.isClient) {
     Template.newLadderModal.events({
         'click #newLadderButton': function () {
-            var name = $('#newLadderForm #name').val();
-            var id = Ladders.insert({name: name});
+            console.log($('#newLadderForm').serializeArray());
+            var validationObject = Mesosphere.newLadderForm.validate($('#newLadderForm').serializeArray());
+            console.log( validationObject );
+            if( validationObject.errors ) return;
+            $('#newLadderModal').modal('hide');
+            var id = Ladders.insert({
+                name: validationObject.formData.name,
+                description: validationObject.formData.description,
+                game: validationObject.formData.game
+            });
             Meteor.users.update( Meteor.userId(), {
                 $set: {
                     "profile.currentLadder": id
                 }
             });
             Scores.insert({_id: id});
+            Session.set( 'section', 'dash' );
         }
     });
+
+    Template.newLadderModal.rendered = function() {
+        $("#newLadderForm #game").select2({
+            minimumInputLength: 2,
+            width: 'off',
+            placeholder: "Choose a game...",
+            query: function (query) {
+                var found = Games.find({ name: { $regex: query.term, $options: 'i' } }).fetch();
+                var data = {results: []}
+                for (i = 0; i < found.length; i++) {
+                    data.results.push({id: found[i]._id, text: found[i].name});
+                }
+                query.callback(data);
+            }
+        });
+    }
 
     Template.ladders.ladders = function () {
         var ladders = Ladders.find({}, {sort: {name: 1}});
@@ -47,6 +72,7 @@ if (Meteor.isClient) {
             });
 
             $("tr.selectLadder[data-id='" + id + "']").addClass('success');
+            Session.set( 'section', 'dash' );
         }
     });
 }

@@ -5,7 +5,7 @@ if (Meteor.isClient) {
             console.log( validationObject );
             if( validationObject.errors ) return;
             $('#newGameModal').modal('hide');
-            var name = $('#newGameForm #name').val();
+            var name = validationObject.formData.name;
             var id = Games.insert({name: name});
         }
     });

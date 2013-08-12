@@ -11,7 +11,7 @@ if (Meteor.isServer) {
 //        );
 //    }
 
-    Meteor.users.remove( {} );
+    //Meteor.users.remove( {} );
 
     if( Meteor.users.find().count() === 0 ) {
 
