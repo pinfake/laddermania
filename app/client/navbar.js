@@ -1,12 +1,16 @@
 if (Meteor.isClient) {
-    Template.navbar.logged = function () {
-        return Session.get("logged");
-    }
     Template.navbar.user = function () {
-        return Session.get("user");
+        console.log( Meteor.user());
+        return Meteor.user();
     }
+
     Template.navbar.currentLadder = function () {
-        return( Session.get('currentLadder') );
+        if( Meteor.user().profile.currentLadder != undefined ) {
+            return Ladders.findOne({_id: Meteor.user().profile.currentLadder });
+        } else {
+            return false;
+        }
+        //return( Session.get('currentLadder') );
     }
 
     Template.navbar.currentSection = function () {
@@ -35,7 +39,7 @@ if (Meteor.isClient) {
             Session.set("section", "games");
         },
         'click #logoutButton': function () {
-            Session.set('user', undefined);
+            Meteor.logout();
         }
     });
 

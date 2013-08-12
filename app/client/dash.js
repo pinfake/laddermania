@@ -1,19 +1,17 @@
 if (Meteor.isClient) {
     Template.dash.currentLadder = function () {
-        var current = Session.get('currentLadder');
-        return( current );
+        return Meteor.user().profile.currentLadder;
     }
 
     Template.ladderMain.currentLadder = function () {
-        var current = Session.get('currentLadder');
-        return( current );
+        return Ladders.findOne({ _id: Meteor.user().profile.currentLadder });
     }
 
     Template.ladderMain.rendered = function () {
     }
 
     Template.ladderPositions.scores = function () {
-        var scores = Scores.findOne({_id: Session.get('currentLadder')._id });
+        var scores = Scores.findOne({_id: Meteor.user().profile.currentLadder });
         console.log(scores);
 
         if (scores == undefined) return false;
@@ -47,7 +45,7 @@ if (Meteor.isClient) {
                 var player = Players.findOne({_id: playerIds[i]});
                 Scores.update(
                     {
-                        _id: Session.get('currentLadder')._id
+                        _id: Meteor.user().profile.currentLadder
                     },
                     { $push: {
                         players: { id: player._id, nickname: player.nickname, score: 0 }

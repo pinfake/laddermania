@@ -4,10 +4,11 @@
             <a class="close" data-dismiss="modal">×</a>
             <h4>New Ladder</h4>
         </div>
-        <div class="modal-body">
-            <p>Please fill in the required information:</p>
+        <form class="form-horizontal" id="newLadderForm">
+            <div class="modal-body">
+                <p>Please fill in the required information:</p>
 
-            <form class="form-horizontal" id="newLadderForm">
+
                 <div class="control-group">
                     <label class="control-label" for="name">Name</label>
 
@@ -18,12 +19,12 @@
                         </div>
                     </div>
                 </div>
-            </form>
-        </div>
-        <div class="modal-footer">
-            <button class="btn btn-success" data-dismiss="modal" id="newLadderButton" onClick="return false;">Create
-            </button>
-        </div>
+                <div>
+                    <button class="btn btn-success pull-right" data-dismiss="modal" id="newLadderButton"
+                            onClick="return false;">Create
+                    </button>
+                </div>
+            </div>
         </form>
     </div>
 </template>

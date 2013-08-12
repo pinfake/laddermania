@@ -2,7 +2,7 @@ if (Meteor.isClient) {
     Session.set("section", "dash");
 
     Template.main.user = function () {
-        return Session.get("user");
+        return Meteor.user();
     }
 
     Template.pcontent.displayContents = function () {
