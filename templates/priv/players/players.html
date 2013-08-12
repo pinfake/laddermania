@@ -1,6 +1,14 @@
 <template name="players">
     {{> newPlayerModal}}
     {{#if players}}
+    <div class="row-fluid">
+        <div class="span4"><h3>Players</h3></div>
+        <div class="span8" style="margin-top: 14px">
+            <button class="btn btn-primary pull-right" data-toggle="modal" href="#newPlayerModal">
+                Add a new Player
+            </button>
+        </div>
+    </div>
     <div id="playerList">
         <table class="table table-bordered table-striped table-hover">
             <thead>
@@ -20,14 +28,14 @@
     <div class="pagination-center text-center">
         <br/>
         <br/>
-        <h4>There are currently no players in the database!. Please consider adding some using the button below...</h4>
+        <h3>There are currently no players created.<br>Please consider adding some using the button below...</h3>
         <br/>
         <br/>
+    </div>
+    <div class="pagination-center text-center">
+        <button class="btn btn-primary btn-large" data-toggle="modal" href="#newPlayerModal">Add a new Player</button>
     </div>
     {{/if}}
-    <div class="pagination-center text-center">
-        <button class="btn btn-success" data-toggle="modal" href="#newPlayerModal">Add a new Player</button>
-    </div>
 </template>
 
 <template name="player">

@@ -78,6 +78,7 @@ if (Meteor.isClient) {
         $("#newLadderPlayerForm #playersInput").select2({
             multiple: true,
             minimumInputLength: 2,
+            placeholder: "Enter nicknames here...",
             query: function (query) {
                 var found = Players.find({ nickname: { $regex: query.term, $options: 'i' } }).fetch();
                 var data = {results: []}

@@ -7,8 +7,11 @@ if( Meteor.isClient ) {
 
     Template.newPlayerModal.events({
         'click #newPlayerButton': function () {
-            var nickname = $('#newPlayerForm #nickname').val();
-            Players.insert({nickname: nickname});
+            var validationObject = Mesosphere.newPlayerForm.validate($('#newPlayerForm').serializeArray());
+            console.log( validationObject );
+            if( validationObject.errors ) return;
+            $('#newPlayerModal').modal('hide');
+            Players.insert({nickname: validationObject.formData.nickname});
         }
     });
 
