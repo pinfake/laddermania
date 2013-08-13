@@ -7,6 +7,7 @@ if (Meteor.isClient) {
             if( validationObject.errors ) return;
             $('#newLadderModal').modal('hide');
             var id = Ladders.insert({
+                userId: Meteor.userId(),
                 name: validationObject.formData.name,
                 description: validationObject.formData.description,
                 game: validationObject.formData.game
@@ -27,7 +28,9 @@ if (Meteor.isClient) {
             width: 'off',
             placeholder: "Choose a game...",
             query: function (query) {
-                var found = Games.find({ name: { $regex: query.term, $options: 'i' } }).fetch();
+                var found = Games.find({
+                    userId: Meteor.userId(),
+                    name: { $regex: query.term, $options: 'i' } }).fetch();
                 var data = {results: []}
                 for (i = 0; i < found.length; i++) {
                     data.results.push({id: found[i]._id, text: found[i].name});
@@ -38,7 +41,7 @@ if (Meteor.isClient) {
     }
 
     Template.ladders.ladders = function () {
-        var ladders = Ladders.find({}, {sort: {name: 1}});
+        var ladders = Ladders.find({userId: Meteor.userId()}, {sort: {name: 1}});
         if (ladders.count() < 1) return false;
         return( ladders );
     };

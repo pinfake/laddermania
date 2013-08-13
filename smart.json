@@ -1,7 +1,19 @@
 {
-  "packages": {
-    "select2": {},
-    "font-awesome": {},
-    "Mesosphere": {}
-  }
+    "packages": {
+        "select2": {},
+        "font-awesome": {},
+        "Mesosphere": {},
+//    "belt-gravatar": {},
+//    "belt-md5": {}
+        "belt-gravatar": {
+            "git": "https://github.com/pinfake/belt-gravatar",
+            "branch": "latest-meteor-compat"
+        },
+        "belt-md5": {
+            "git": "https://github.com/pinfake/belt-md5",
+            "branch": "latest-meteor-compat"
+        },
+        "crypto-base": {},
+        "crypto-md5": {}
+    }
 }

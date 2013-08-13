@@ -6,7 +6,10 @@ if (Meteor.isClient) {
             if( validationObject.errors ) return;
             $('#newGameModal').modal('hide');
             var name = validationObject.formData.name;
-            var id = Games.insert({name: name});
+            var id = Games.insert({
+                userId: Meteor.userId(),
+                name: name
+            });
         }
     });
 
@@ -14,7 +17,7 @@ if (Meteor.isClient) {
     }
 
     Template.games.games = function () {
-        var games = Games.find({}, {sort: {name: 1}});
+        var games = Games.find({userId: Meteor.userId()}, {sort: {name: 1}});
         if (games.count() < 1) return false;
         return( games );
     };

@@ -32,12 +32,6 @@ if (Meteor.isClient) {
         return scores.players;
     };
 
-    Template.modalLadderAddPlayer.players = function () {
-        var players = Players.find({}, {sort: {nickname: 1}});
-        if (players.count() < 1) return false;
-        return( players );
-    };
-
     Template.modalLadderAddPlayer.events = ({
         'click #addPlayerButton': function () {
             var playerIds = $('#playersInput').select2("val");
@@ -80,7 +74,9 @@ if (Meteor.isClient) {
             minimumInputLength: 2,
             placeholder: "Enter nicknames here...",
             query: function (query) {
-                var found = Players.find({ nickname: { $regex: query.term, $options: 'i' } }).fetch();
+                var found = Players.find({
+                    userId: Meteor.userId(),
+                    nickname: { $regex: query.term, $options: 'i' } }).fetch();
                 var data = {results: []}
                 for (i = 0; i < found.length; i++) {
                     data.results.push({id: found[i]._id, text: found[i].nickname});

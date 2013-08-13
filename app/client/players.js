@@ -1,6 +1,9 @@
 if( Meteor.isClient ) {
+
+    console.log( Belt.Gravatar.urlFromEmail('imota@antevenio.com') );
+
     Template.players.players = function () {
-        var players = Players.find({}, {sort: {nickname: 1}});
+        var players = Players.find({userId: Meteor.userId()}, {sort: {nickname: 1}});
         if (players.count() < 1) return false;
         return( players );
     };
@@ -11,7 +14,11 @@ if( Meteor.isClient ) {
             console.log( validationObject );
             if( validationObject.errors ) return;
             $('#newPlayerModal').modal('hide');
-            Players.insert({nickname: validationObject.formData.nickname});
+            Players.insert({
+                userId: Meteor.userId(),
+                nickname: validationObject.formData.nickname,
+                email: validationObject.formData.email
+            });
         }
     });
 

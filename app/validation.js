@@ -30,6 +30,11 @@ Mesosphere({
                 minLength:3
             },
             message: "3 characters min, 20 characters max"
+        },
+        email: {
+            required: false,
+            format: 'email',
+            message: 'Please enter a valid email address'
         }
     }
 });
