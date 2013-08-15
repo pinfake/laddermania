@@ -1,6 +1,6 @@
 if( Meteor.isClient ) {
 
-    console.log( Belt.Gravatar.urlFromEmail('imota@antevenio.com') );
+    //console.log( Belt.Gravatar.urlFromEmail('imota@antevenio.com') );
 
     Template.players.players = function () {
         var players = Players.find({userId: Meteor.userId()}, {sort: {nickname: 1}});
