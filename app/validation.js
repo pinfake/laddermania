@@ -2,6 +2,7 @@ Mesosphere({
     id: 'newGameForm',
     fields: {
         name: {
+            docProperty: 'name',
             required: true,
             rules:{
                 maxLength:40,
@@ -10,6 +11,7 @@ Mesosphere({
             message: "3 characters min, 40 characters max"
         },
         description: {
+            docProperty: 'description',
             required: false,
             rules:{
                 minLength:5,

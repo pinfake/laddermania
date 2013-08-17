@@ -1,4 +1,6 @@
 if (Meteor.isClient) {
+    Meteor.subscribe( "ladders" );
+
     Template.newLadderModal.events({
         'click #newLadderButton': function () {
             console.log($('#newLadderForm').serializeArray());
@@ -41,7 +43,7 @@ if (Meteor.isClient) {
     }
 
     Template.ladders.ladders = function () {
-        var ladders = Ladders.find({userId: Meteor.userId()}, {sort: {name: 1}});
+        var ladders = Ladders.find({});
         if (ladders.count() < 1) return false;
         return( ladders );
     };

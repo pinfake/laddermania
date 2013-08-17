@@ -4,10 +4,10 @@
     "basePackages": {
       "select2": {},
       "font-awesome": {},
-      "Mesosphere": {},
-      "belt-gravatar": {},
-      "crypto-base": {},
-      "crypto-md5": {}
+      "Mesosphere": {
+        "git": "https://github.com/pinfake/Mesosphere",
+        "branch": "master"
+      }
     },
     "packages": {
       "select2": {
@@ -21,34 +21,14 @@
         "commit": "2cba6f907a2579cae2d399b522f9544c13d5e091"
       },
       "Mesosphere": {
-        "git": "https://github.com/copleykj/Mesosphere.git",
-        "tag": "v0.1.1",
-        "commit": "0873e449f7cabb58986b05c9d2b7b3b64bd19a9f"
-      },
-      "belt-gravatar": {
-        "git": "https://github.com/meteorbelt/belt-gravatar.git",
-        "tag": "v0.1.0",
-        "commit": "14cb2d50fb76cb1abfffb9978ec16b5bb3f4fe5e"
-      },
-      "crypto-base": {
-        "git": "https://github.com/tmeasday/meteor-crypto-base.git",
-        "tag": "v0.0.2",
-        "commit": "f0dceae8493cabfff06af60bbeb11223d36fdae8"
-      },
-      "crypto-md5": {
-        "git": "https://github.com/tmeasday/meteor-crypto-md5.git",
-        "tag": "v0.0.1",
-        "commit": "a0638a6cabfc84e19f2d5828f76aa8f6a0cc8c1a"
+        "git": "https://github.com/pinfake/Mesosphere",
+        "branch": "master",
+        "commit": "2a9fa947df29419bd3193870be3315a7ecb65556"
       },
       "underscore-string": {
         "git": "https://github.com/possibilities/meteor-underscore-string.git",
         "tag": "v2.2.0rc.1",
         "commit": "dec21fac23310daf76dc19f246749e7beb48af03"
-      },
-      "belt-md5": {
-        "git": "https://github.com/meteorbelt/belt-md5.git",
-        "tag": "v0.1.3",
-        "commit": "4e9f1ec5e553716579b06dd2e0eac136f9dc108b"
       }
     }
   }

@@ -1,4 +1,6 @@
 if (Meteor.isClient) {
+    Meteor.subscribe( "games" );
+
     Template.newGameModal.events({
         'click #newGameButton': function () {
             var validationObject = Mesosphere.newGameForm.validate($('#newGameForm').serializeArray());
@@ -6,10 +8,13 @@ if (Meteor.isClient) {
             if( validationObject.errors ) return;
             $('#newGameModal').modal('hide');
             var name = validationObject.formData.name;
+            var description = validationObject.formData.description;
             var id = Games.insert({
                 userId: Meteor.userId(),
-                name: name
+                name: name,
+                description: description
             });
+            console.log( "New game id: " + id );
         }
     });
 
@@ -17,7 +22,7 @@ if (Meteor.isClient) {
     }
 
     Template.games.games = function () {
-        var games = Games.find({userId: Meteor.userId()}, {sort: {name: 1}});
+        var games = Games.find({});
         if (games.count() < 1) return false;
         return( games );
     };
