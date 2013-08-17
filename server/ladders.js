@@ -4,8 +4,17 @@ if (Meteor.isServer) {
     });
 
     Ladders.allow({
-        insert: function( userId, ladder ) {
-            console.log( "Someone tried to insert... " + userId );
+        insert: function( userId, doc ) {
+            if( doc.userId != userId ) return false;
+            var validation = Mesosphere.newLadderForm.validateDocument( doc );
+            if( validation.errors ) {
+                console.log( validation.errors );
+                return false;
+            }
+            return true;
+        },
+        remove: function( userId, doc ) {
+            if( doc.userId == userId ) return true;
             return false;
         }
     });

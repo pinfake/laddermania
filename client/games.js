@@ -4,7 +4,6 @@ if (Meteor.isClient) {
     Template.newGameModal.events({
         'click #newGameButton': function () {
             var validationObject = Mesosphere.newGameForm.validate($('#newGameForm').serializeArray());
-            console.log( validationObject );
             if( validationObject.errors ) return;
             $('#newGameModal').modal('hide');
             var name = validationObject.formData.name;
@@ -14,7 +13,6 @@ if (Meteor.isClient) {
                 name: name,
                 description: description
             });
-            console.log( "New game id: " + id );
         }
     });
 

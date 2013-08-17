@@ -18,6 +18,9 @@ Mesosphere({
                 maxLength: 200
             },
             message: "5 characters min, 200 characters max"
+        },
+        userId: {
+            docProperty: 'userId'
         }
     }
 });
