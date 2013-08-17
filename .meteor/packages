@@ -9,3 +9,8 @@ bootstrap
 accounts-base
 accounts-facebook
 accounts-password
+standard-app-packages
+Mesosphere
+font-awesome
+select2
+underscore-string
