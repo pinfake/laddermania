@@ -1,13 +1,11 @@
 {
-    "packages": {
-        "select2": {
-            "git": "https://github.com/pinfake/meteor-select2"
-        },
-        "font-awesome": {},
-        "Mesosphere": {
-            "git": "https://github.com/pinfake/Mesosphere",
-            "branch": "server_document_validation"
-        }
-
+  "packages": {
+    "select2": {
+    },
+    "font-awesome": {},
+    "Mesosphere": {
+      "git": "https://github.com/pinfake/Mesosphere",
+      "branch": "server_document_validation"
     }
+  }
 }
