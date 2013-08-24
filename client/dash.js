@@ -35,18 +35,9 @@ if (Meteor.isClient) {
     Template.modalLadderAddPlayer.events = ({
         'click #addPlayerButton': function () {
             var playerIds = $('#playersInput').select2("val");
-            for (var i = 0; i < playerIds.length; i++) {
-                var player = Players.findOne({_id: playerIds[i]});
-                Scores.update(
-                    {
-                        _id: Meteor.user().profile.currentLadder
-                    },
-                    { $push: {
-                        players: { id: player._id, nickname: player.nickname, score: 0 }
-                    }
-                    }
-                );
-            }
+
+            Meteor.call( 'addPlayersToLadder', Meteor.user().profile.currentLadder, playerIds );
+
             // This is hack to prevent select2 to become zombie when
             // this event is fired by an enter keypress
             $('#playersInput').select2("val", null);
@@ -54,7 +45,6 @@ if (Meteor.isClient) {
             $('#playersInput').select2("enable", true);
         },
         'click #insertPlayerButton': function () {
-
             $('#playersInput').select2("val", null);
             $('#playersInput').select2("enable", false);
             $('#playersInput').select2("enable", true);

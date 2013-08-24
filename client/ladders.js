@@ -3,23 +3,13 @@ if (Meteor.isClient) {
 
     Template.newLadderModal.events({
         'click #newLadderButton': function () {
-            console.log($('#newLadderForm').serializeArray());
-            var validationObject = Mesosphere.newLadderForm.validate($('#newLadderForm').serializeArray());
-            console.log( validationObject );
+            var formData = $('#newLadderForm').serializeArray();
+            var validationObject = Mesosphere.newLadderForm.validate(formData);
             if( validationObject.errors ) return;
             $('#newLadderModal').modal('hide');
-            var id = Ladders.insert({
-                userId: Meteor.userId(),
-                name: validationObject.formData.name,
-                description: validationObject.formData.description,
-                game: validationObject.formData.game
-            });
-            Meteor.users.update( Meteor.userId(), {
-                $set: {
-                    "profile.currentLadder": id
-                }
-            });
-            Scores.insert({_id: id});
+            Meteor.call( 'addLadder', formData );
+            Meteor.call( 'selectLadder', id );
+            Meteor.subscribe( "scores", id );
             Session.set( 'section', 'dash' );
         }
     });
@@ -60,24 +50,19 @@ if (Meteor.isClient) {
             console.log($(element).attr('data-id'));
 
             var id = $(element).attr('data-id');
-
-            Ladders.remove({ _id: id });
-            Scores.remove({ ladderId: id });
+            Meteor.call( 'removeLadder', id );
         },
         'click tr.selectLadder': function (event) {
             if ($(event.target).is('i')) return;
             var element = event.currentTarget;
             var id = $(element).attr('data-id');
+
+            Meteor.call( 'selectLadder', id );
             $("tr.selectLadder[data-id='" + Meteor.user().profile.currentLadder + "']").removeClass('success');
-
-            Meteor.users.update( Meteor.userId(), {
-                $set: {
-                    "profile.currentLadder": id
-                }
-            });
-
+            Meteor.subscribe( "scores", id );
             $("tr.selectLadder[data-id='" + id + "']").addClass('success');
             Session.set( 'section', 'dash' );
+
         }
     });
 }

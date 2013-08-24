@@ -3,16 +3,11 @@ if (Meteor.isClient) {
 
     Template.newGameModal.events({
         'click #newGameButton': function () {
-            var validationObject = Mesosphere.newGameForm.validate($('#newGameForm').serializeArray());
+            var formData = $('#newGameForm').serializeArray();
+            var validationObject = Mesosphere.newGameForm.validate(formData);
             if( validationObject.errors ) return;
+            Meteor.call( 'addGame', formData);
             $('#newGameModal').modal('hide');
-            var name = validationObject.formData.name;
-            var description = validationObject.formData.description;
-            var id = Games.insert({
-                userId: Meteor.userId(),
-                name: name,
-                description: description
-            });
         }
     });
 
@@ -28,13 +23,8 @@ if (Meteor.isClient) {
     Template.game.events({
         'click .removeGame': function (event) {
             var element = event.currentTarget;
-            console.log("Deleting game: ");
-            console.log($(element));
-            console.log($(element).attr('data-id'));
-
             var id = $(element).attr('data-id');
-
-            Games.remove({ _id: id });
+            Meteor.call( 'removeGame', id );
         }
     });
 }

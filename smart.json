@@ -4,8 +4,6 @@
     },
     "font-awesome": {},
     "Mesosphere": {
-      "git": "https://github.com/pinfake/Mesosphere",
-      "branch": "server_document_validation"
     }
   }
 }
