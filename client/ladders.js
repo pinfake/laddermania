@@ -7,10 +7,13 @@ if (Meteor.isClient) {
             var validationObject = Mesosphere.newLadderForm.validate(formData);
             if( validationObject.errors ) return;
             $('#newLadderModal').modal('hide');
-            Meteor.call( 'addLadder', formData );
-            Meteor.call( 'selectLadder', id );
-            Meteor.subscribe( "scores", id );
-            Session.set( 'section', 'dash' );
+            Meteor.call( 'addLadder', formData, function( error, result ) {
+                if( !error ) {
+                    Meteor.call( 'selectLadder', result );
+                    Session.set( 'section', 'dash' );
+                    Meteor.subscribe( "scores", result );
+                }
+            } );
         }
     });
 
