@@ -1,24 +1,24 @@
 if (Meteor.isClient) {
-    Meteor.subscribe( "ladders" );
+    Meteor.subscribe("ladders");
 
     Template.newLadderModal.events({
         'click #newLadderButton': function () {
             var formData = $('#newLadderForm').serializeArray();
             var validationObject = Mesosphere.newLadderForm.validate(formData);
-            if( validationObject.errors ) return;
+            if (validationObject.errors) return;
             $('#newLadderModal').modal('hide');
-            Meteor.call( 'addLadder', formData, function( error, result ) {
-                if( !error ) {
-                    Meteor.call( 'selectLadder', result );
-                    Session.set( 'section', 'dash' );
-                    Meteor.subscribe( "scores", result );
+            Meteor.call('addLadder', formData, function (error, result) {
+                if (!error) {
+                    Meteor.call('selectLadder', result);
+                    Session.set('section', 'dash');
+                    Meteor.subscribe("scores", result);
                 }
-            } );
+            });
         }
     });
 
-    Template.newLadderModal.rendered = function() {
-        $("#newLadderForm #game").select2({
+    Template.newLadderModal.rendered = function () {
+        $('#newLadderForm #game').select2({
             minimumInputLength: 2,
             width: 'off',
             placeholder: "Choose a game...",
@@ -33,7 +33,7 @@ if (Meteor.isClient) {
                 query.callback(data);
             }
         });
-    }
+    };
 
     Template.ladders.ladders = function () {
         var ladders = Ladders.find({});
@@ -53,18 +53,18 @@ if (Meteor.isClient) {
             console.log($(element).attr('data-id'));
 
             var id = $(element).attr('data-id');
-            Meteor.call( 'removeLadder', id );
+            Meteor.call('removeLadder', id);
         },
         'click tr.selectLadder': function (event) {
             if ($(event.target).is('i')) return;
             var element = event.currentTarget;
             var id = $(element).attr('data-id');
 
-            Meteor.call( 'selectLadder', id );
+            Meteor.call('selectLadder', id);
             $("tr.selectLadder[data-id='" + Meteor.user().profile.currentLadder + "']").removeClass('success');
-            Meteor.subscribe( "scores", id );
+            Meteor.subscribe("scores", id);
             $("tr.selectLadder[data-id='" + id + "']").addClass('success');
-            Session.set( 'section', 'dash' );
+            Session.set('section', 'dash');
 
         }
     });
