@@ -47,13 +47,27 @@ if (Meteor.isClient) {
 
     Template.ladder.events({
         'click .removeLadder': function (event) {
-            var element = event.currentTarget;
-            console.log("Deleting ladder: ");
-            console.log($(element));
-            console.log($(element).attr('data-id'));
-
-            var id = $(element).attr('data-id');
-            Meteor.call('removeLadder', id);
+            var id = $(event.currentTarget).attr('data-id');
+            bootbox.dialog({
+                message: "<p>Removing a ladder will destroy all associated settings, matches, positions, etc.</p>\n"+
+                         "<p>Are you sure you want to do this?</p>",
+                title: "Warning!!!",
+                buttons: {
+                    cancel: {
+                        label: "Cancel",
+                        className: "btn"
+                    },
+                    ok: {
+                        label: "Ok",
+                        className: "btn-danger",
+                        callback: function() {
+                            console.log( 'id vale ' );
+                            console.log( id );
+                            Meteor.call('removeLadder', id);
+                        }
+                    }
+                }
+            });
         },
         'click tr.selectLadder': function (event) {
             if ($(event.target).is('i')) return;

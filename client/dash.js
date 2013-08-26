@@ -61,8 +61,9 @@ if (Meteor.isClient) {
     Template.modalLadderAddPlayer.rendered = function () {
         $("#newLadderPlayerForm #playersInput").select2({
             multiple: true,
+            width: '70%',
             minimumInputLength: 2,
-            placeholder: "Enter nicknames here...",
+            placeholder: "Enter nicknames...",
             query: function (query) {
                 var found = Players.find({
                     userId: Meteor.userId(),
